@@ -31,6 +31,11 @@ export default {
     changeOptions (e) {
       this.$emit('update:modelValue', e.target.value)
     }
+  },
+  watch: {
+    selectorSort (newValue) {
+      console.log(newValue)
+    }
   }
 }
 </script>
