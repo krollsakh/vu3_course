@@ -1,5 +1,4 @@
 <template>
-  {{ modelValue }}
   <select
     :value="modelValue"
     @change="changeOptions"
