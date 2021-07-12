@@ -1,4 +1,4 @@
-# ulbi
+# VUE 3 Course
 
 ## Project setup
 ```

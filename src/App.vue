@@ -3,7 +3,7 @@
     <h1>Страница с постами</h1>
     <div class="app__btns">
       <my-button @click="showDialog">Добавить пост</my-button>
-<!--      <my-select v-model="selectedSort" :options="sortOptions"/>-->
+      <my-select v-model="selectedSort" :options="sortOptions"/>
     </div>
     <my-dialog v-model:show="dialogVisible">
       <post-form @create="createPost"/>
@@ -87,4 +87,9 @@ h1 {
   display: flex;
   justify-content: space-between;
 }
+
+select {
+  border: 1px solid #0279F0FF;
+}
+
 </style>

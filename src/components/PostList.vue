@@ -1,4 +1,4 @@
-<template>
+F<template>
   <div v-if="posts.length !== 0">
     <h1>Список постов</h1>
     <post-item @remove="$emit('remove', post)" v-for="post in posts" :post="post" :key="post.id"/>
