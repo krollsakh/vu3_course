@@ -36,11 +36,11 @@ export default {
 }
 
 .dialog__content {
-  padding: 0 10px;
+  padding: 10px;
   margin: auto;
   border-radius: 8px;
   background: #fff;
   width: 400px;
-  height: 160px;
+  /*height: available;*/
 }
 </style>

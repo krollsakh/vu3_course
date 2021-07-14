@@ -36,4 +36,12 @@ export default {
 
 <style scoped>
 
+select {
+  border: 1px solid #0279F0FF;
+  padding: 10px;
+}
+
+:focus {
+  box-shadow: 0 0 5px 0 #0279F0FF;
+}
 </style>

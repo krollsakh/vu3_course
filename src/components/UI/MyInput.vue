@@ -1,5 +1,5 @@
 <template>
-  <input :value="modelValue" @input="onInput" type="text">
+  <input class="input" :value="modelValue" @input="onInput" type="text">
 </template>
 
 <script>
@@ -21,8 +21,11 @@ export default {
 <style scoped>
 input {
   width: 100%;
-  margin-top: 10px;
+  margin-bottom: 10px;
   padding: 10px;
   border: 1px solid #0279F0FF;
+  box-shadow: none;
+
 }
+
 </style>

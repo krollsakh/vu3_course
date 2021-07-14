@@ -1,8 +1,8 @@
 <template>
   <form @submit.prevent>
-    <my-input class="input" type="text" placeholder="Тема" v-model="post.title"/>
-    <my-input class="input" type="text" placeholder="Описание" v-model="post.body"/>
-    <my-button @click="createPost" style="align-self: flex-end; margin-top: 10px">
+    <my-input  type="text" placeholder="Тема" v-model="post.title"/>
+    <my-input  type="text" placeholder="Описание" v-model="post.body"/>
+    <my-button @click="createPost" style="align-self: flex-end">
       Добавить пост
     </my-button>
   </form>
@@ -37,12 +37,4 @@ form {
   display: flex;
   flex-direction: column;
 }
-
-.input {
-  width: 100%;
-  margin-top: 10px;
-  padding: 10px;
-  border: 1px solid #0279F0FF;
-}
-
 </style>
