@@ -25,6 +25,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 h1 {
   margin: 15px 0;

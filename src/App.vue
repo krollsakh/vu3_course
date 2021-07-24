@@ -11,6 +11,9 @@
     </my-dialog>
     <post-list v-if="!isLoadingPosts" @remove="removePost" :posts="searchAndSortedPost"/>
     <div v-else>Идет загрузка...</div>
+    <div>
+      Страница {{ page }} из {{ totalPages }}
+    </div>
   </div>
 </template>
 
@@ -32,6 +35,9 @@ export default {
       posts: [],
       dialogVisible: false,
       isLoadingPosts: false,
+      page: 1,
+      limit: 3,
+      totalPages: 0,
       selectedSort: '',
       searchPost: '',
       sortOptions: [
@@ -54,8 +60,14 @@ export default {
     async fetchPosts () {
       try {
         this.isLoadingPosts = true
-        const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=10')
+        const response = await axios.get('https://jsonplaceholder.typicode.com/posts', {
+          params: {
+            _limit: this.limit,
+            _page: this.page
+          }
+        })
         this.posts = response.data
+        this.totalPages = Math.ceil(response.headers['x-total-count'] / this.limit)
       } catch (e) {
         alert('Ошибка чтения постов')
       } finally {
