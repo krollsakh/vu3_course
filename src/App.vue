@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <h1>Страница с постами</h1>
-    <my-input v-model="searchPost" placeholder="Поиск по Теме..." />
+    <my-input v-model="searchPost" placeholder="Поиск по Теме..."/>
     <div class="app__btns">
       <my-button @click="showDialog">Добавить пост</my-button>
       <my-select v-model="selectedSort" :options="sortOptions"/>
@@ -11,8 +11,16 @@
     </my-dialog>
     <post-list v-if="!isLoadingPosts" @remove="removePost" :posts="searchAndSortedPost"/>
     <div v-else>Идет загрузка...</div>
-    <div>
-      Страница {{ page }} из {{ totalPages }}
+    <div class="page__wrapper">
+      <div
+        v-for="pageNumber in totalPages"
+        :key="pageNumber"
+        class="page"
+        :class="{ page__active: page === pageNumber }"
+        @click="onClickPage(pageNumber)"
+      >
+        {{ pageNumber }}
+      </div>
     </div>
   </div>
 </template>
@@ -41,8 +49,14 @@ export default {
       selectedSort: '',
       searchPost: '',
       sortOptions: [
-        { value: 'title', title: 'Сортировать по наименованию' },
-        { value: 'body', title: 'Сортировать по содержимому' }
+        {
+          value: 'title',
+          title: 'Сортировать по наименованию'
+        },
+        {
+          value: 'body',
+          title: 'Сортировать по содержимому'
+        }
       ]
     }
   },
@@ -73,6 +87,9 @@ export default {
       } finally {
         this.isLoadingPosts = false
       }
+    },
+    onClickPage (pageNumber) {
+      this.page = pageNumber
     }
   },
   mounted () {
@@ -84,6 +101,11 @@ export default {
     },
     searchAndSortedPost () {
       return this.sortedPosts.filter(post => post.title.toLowerCase().includes(this.searchPost.toLowerCase()))
+    }
+  },
+  watch: {
+    page () {
+      this.fetchPosts()
     }
   }
 }
@@ -112,4 +134,31 @@ h1 {
   justify-content: space-between;
 }
 
+.page__wrapper {
+  display: flex;
+  /*align-items: center;*/
+  /*justify-content: center;*/
+  margin-top: 15px;
+  width: 100%;
+}
+
+.page {
+  display: flex;
+  border: 1px solid #0279F0FF;
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  margin-right: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.page:hover {
+  cursor: pointer;
+}
+
+.page__active {
+  border: 2px solid;
+  background: lightblue;
+}
 </style>
